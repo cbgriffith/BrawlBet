@@ -15,12 +15,12 @@ export const BetForm = () => {
 
   //when field changes, update state. This causes a re-render and updates the view.
   //Controlled component
-  const handleControlledInputChange = (betObj) => {
+  const handleControlledInputChange = (event) => {
     //When changing a state object or array,
     //always create a copy make changes, and then set state.
     const newBet = { ...bet }
     //set the property to the new value
-    newBet[betObj.target.name] = betObj.target.value
+    newBet[event.target.name] = event.target.value
     //update state
     setBet(newBet)
   }
