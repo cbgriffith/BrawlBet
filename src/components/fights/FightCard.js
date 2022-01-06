@@ -1,15 +1,16 @@
 import React, { useState } from "react"
-import { useNavigate } from "react-router-dom"
+// import { useNavigate } from "react-router-dom"
 import { Button, Modal } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
+import { InputGroup } from "react-bootstrap";
 import "./Fight.css"
 
 
 
 
 export const FightCard = ({fight}) => {
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
     // State for the drop down
     //handlecontrolledchangeinput 
     const [betHouse, setBetHouse] = useState(0);
@@ -37,7 +38,7 @@ export const FightCard = ({fight}) => {
 
     const homeOdds = fight.bookmakers.find(x => x.title === betHouse.chooseBetMaker)?.markets[0].outcomes[1].price
     const awayOdds = fight.bookmakers.find(x => x.title === betHouse.chooseBetMaker)?.markets[0].outcomes[0].price
-    let oddsSelected;
+    // let oddsSelected;
     // console.log(betHouse.chooseBetMaker)
     console.log(fighterSelect)
     function BetFormModal(props) {
@@ -73,8 +74,11 @@ export const FightCard = ({fight}) => {
                             <Form.Control type="text" readOnly defaultValue={(fighterSelect.fighterBetOn === fight.home_team) && (fighterSelect.fighterBetOn !== "0") && (fighterSelect !== 0) ?  homeOdds : awayOdds} />
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Bet Amount</Form.Label>
-                            <Form.Control type="number" placeholder="$"/>
+                        <Form.Label>Bet Amount</Form.Label>
+                            <InputGroup className="mb-3">
+                                <InputGroup.Text>$</InputGroup.Text>
+                                <Form.Control required type="number" placeholder="Enter bet amount"/>
+                            </InputGroup>
                         </Form.Group>
                     </Form>
             </Modal.Body>
@@ -103,14 +107,12 @@ export const FightCard = ({fight}) => {
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-            <hr></hr>
+            <hr/>
+            <br/>
         </section>
         </Container>
         )
 }
-
-
-
 
 // {/* Only show the Bet button if a betting house is selected */}
 // { betHouse !== 0 && betHouse.chooseBetMaker !== "0" ? 

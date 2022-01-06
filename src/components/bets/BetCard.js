@@ -2,6 +2,7 @@ import React, { useContext } from "react"
 import "./Bet.css"
 import { useNavigate } from "react-router-dom"
 import { BetContext } from "./BetProvider"
+import Container from 'react-bootstrap/Container';
 
 export const BetCard = ({bet}) => {
     const {deleteBet} = useContext(BetContext)
@@ -66,6 +67,7 @@ export const BetCard = ({bet}) => {
 
     if (+localStorage.activeUser === bet.userId){
     return (
+        <Container>
         <section className="bet">
             <h3 className="bet__id">Bet# {bet.id}</h3>
             <div className="bet__date">{bet.date}</div>
@@ -82,6 +84,7 @@ export const BetCard = ({bet}) => {
             }}>Edit</button>
             <hr></hr>
         </section>
+        </Container>
         )
         } else {
             return ""
