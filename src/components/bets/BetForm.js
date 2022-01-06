@@ -1,10 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"
 import { BetContext } from "./BetProvider"
+import { FightContext } from "../fights/FightProvider";
 import "./Bet.css"
 import { useNavigate, useParams } from 'react-router-dom';
 
+
 export const BetForm = () => {
   const { addBet, getBetById, updateBet } = useContext(BetContext)
+  const { fights, getFights } = useContext(FightContext)
 
   const [bet, setBet] = useState({ betResult: "Pending"})
   //wait for data before button is active
@@ -25,6 +28,17 @@ export const BetForm = () => {
     setBet(newBet)
   }
 
+  const [betHouse, setBetHouse] = useState(0);
+    const handleControlledInputChangeBet = (event) => {
+    //When changing a state object or array,
+    //always create a copy make changes, and then set state.
+    const newBetHouse = { ...betHouse }
+    //set the property to the new value
+    newBetHouse[event.target.id] = event.target.value
+    //update state
+    setBetHouse(newBetHouse)
+      }
+
   const handleSaveBet = () => {
       setIsLoading(true);
       if (betId){
@@ -42,7 +56,7 @@ export const BetForm = () => {
         })
         .then(() => navigate("/bets"))
       } else {
-        console.log(bet)
+        // console.log(bet)
         //POST - add
         addBet({
             bettingHouse: bet.bettingHouse,
@@ -53,6 +67,7 @@ export const BetForm = () => {
             betAmount: bet.betAmount,
             betResult: bet.betResult,
             userId: +localStorage.activeUser,
+            fightId: bet.fightId
         })
         .then(() => navigate("/bets"))
       }
@@ -60,6 +75,9 @@ export const BetForm = () => {
   }
 
   useEffect(() => {
+      getFights()
+      .then(fights.map(fight => fight.id))
+      .then(() => {
       if (betId){
         getBetById(betId)
         .then(bet => {
@@ -69,10 +87,10 @@ export const BetForm = () => {
       } else {
         setIsLoading(false)
       }
-    
+    })
     // eslint-disable-next-line
   }, [])
-
+  
   //since state controlls this component, we no longer need
   //useRef(null) or ref
 
@@ -101,6 +119,12 @@ export const BetForm = () => {
                   <label htmlFor="bettingHouse">Betting house:</label>
                   <input type="text" id="bettingHouse" onChange={handleControlledInputChange} required className="form-control" placeholder="Betting house" name="bettingHouse" defaultValue={bet.bettingHouse}/>
               </div>
+              {/* <div className="form-group">
+              <select id="chooseBetMaker" onChange={handleControlledInputChangeBet} className="form-control">
+                    <option value="0">Select a betting house</option>
+                    {fights.bookmakers.map(bookmaker => <option value={bookmaker.key}>{bookmaker.title}</option>)}
+              </select>
+              </div> */}
               <div className="form-group">
                   <label htmlFor="betAmount">Bet Amount:</label>
                   <input type="text" id="betAmount" onChange={handleControlledInputChange} required className="form-control" placeholder="Bet Amount" name="betAmount" defaultValue={bet.betAmount}/>

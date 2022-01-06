@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react"
 import { FightContext } from "./FightProvider"
 import { FightCard } from "./FightCard"
+import { Container } from "react-bootstrap"
 import "./Fight.css"
 
 export const FightList = () => {
@@ -16,6 +17,7 @@ export const FightList = () => {
 //   fights.sort((a,b) => new Date(a.dates.start.localDate) - new Date(b.dates.start.localDate))
   return (
     <>
+    <Container>
     <h1>Fights</h1>
     <div className="fights">
       {
@@ -24,6 +26,7 @@ export const FightList = () => {
         })
       }
     </div>
+    </Container>
     </>
   )
 }
