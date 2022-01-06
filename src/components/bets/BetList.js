@@ -20,7 +20,7 @@ export const BetList = () => {
   return (
     <>
     <h1>Bets</h1>
-    <button onClick={() => navigate("/bets/create")}>
+      <button onClick={() => navigate("/bets/create")}>
           Add Bet
       </button>
     <div className="bets">
