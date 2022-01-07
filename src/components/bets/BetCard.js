@@ -1,18 +1,27 @@
-import React, { useContext } from "react"
-import "./Bet.css"
+import React, { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { BetContext } from "./BetProvider"
+import Container from 'react-bootstrap/Container';
+import { Button } from "react-bootstrap"
+import { BetModal } from "./BetModal";
+import { Card } from "react-bootstrap";
+import "./Bet.css"
 
 export const BetCard = ({bet}) => {
-    const {deleteBet} = useContext(BetContext)
+    // const {deleteBet} = useContext(BetContext)
     const navigate = useNavigate()
+    const [betHouse, setBetHouse] = useState(0);
+    const [fighterSelect, setFighterBetOn] = useState(0);
+    const [modalShow, setModalShow] = React.useState(false);
+    const [saveFighter, setSaveFighter] = useState({})
 
-    const handleDelete = () => {
-        deleteBet(bet.id)
-        .then(() => {
-          navigate("/Bets")
-        })
-      }
+
+    // const handleDelete = () => {
+    //     deleteBet(bet.id)
+    //     .then(() => {
+    //       navigate("/Bets")
+    //     })
+    //   }
 
       let isUnderdog;
       if (bet.odds > 0){
@@ -66,22 +75,30 @@ export const BetCard = ({bet}) => {
 
     if (+localStorage.activeUser === bet.userId){
     return (
-        <section className="bet">
-            <h3 className="bet__id">Bet# {bet.id}</h3>
-            <div className="bet__date">{bet.date}</div>
-            <div className="bet__fightInfo">{bet.fighterBetOn} over {bet.fighterBetAgainst}</div>
-            <div className="bet__odds">Odds: {isUnderdog}{bet.odds}</div>
-            <div className="bet__bettingHouse">Betting House: {bet.bettingHouse}</div>
-            <div className="bet__betAmount">Bet Amount: ${bet.betAmount}</div>
-            <div className="bet__betResult">Result: {bet.betResult} </div>
-            <div>Odds in decimal: {oddsInDecimal}</div>
-            <div>{winLossPending} {isLoser}{showDollarSymbol}{moneyWonLost}</div>
-            <button onClick={handleDelete}>Delete</button>
-            <button onClick={() => {
-            navigate(`/bets/edit/${bet.id}`)
-            }}>Edit</button>
-            <hr></hr>
-        </section>
+        <Container>
+            <Card style={{ width: '30rem' }}>
+                <Card.Body>
+                    <Card.Title>Bet#{bet.id}</Card.Title>
+                    <Card.Subtitle>{bet.date}</Card.Subtitle>
+                    <div className="bet__fightInfo">{bet.fighterBetOn} over {bet.fighterBetAgainst}</div>
+                    <div className="bet__odds">Odds: {isUnderdog}{bet.odds}</div>
+                    <div className="bet__bettingHouse">Betting House: {bet.bettingHouse}</div>
+                    <div className="bet__betAmount">Bet Amount: ${bet.betAmount}</div>
+                    <div className="bet__betResult">Result: {bet.betResult} </div>
+                    <div>Odds in decimal: {oddsInDecimal}</div>
+                    <div>{winLossPending} {isLoser}{showDollarSymbol}{moneyWonLost}</div>
+                    {/* <button onClick={handleDelete}>Delete</button> */}
+                    <Button variant="primary" onClick={() => setModalShow(true)}>
+                        Edit Outcome
+                        </Button>
+                        <BetModal
+                        betHouse={betHouse}
+                        show={modalShow}
+                        onHide={() => setModalShow(false)}
+                        />
+                </Card.Body>
+            </Card>
+        </Container>
         )
         } else {
             return ""

@@ -6,7 +6,7 @@ export const FightProvider = (props) => {
     const [fights, setFights] = useState([])
 
     const getFights = () => {
-        return fetch("https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds/?regions=us&apiKey=7b176fdbd8c801cb85b9be346deb53b2&markets=h2h,spreads&oddsFormat=american")
+        return fetch("https://api.the-odds-api.com/v4/sports/mma_mixed_martial_arts/odds/?regions=us&apiKey=2935667468d35c06f490e40a424c95d7&markets=h2h,spreads&oddsFormat=american")
         .then(res => res.json())
         .then(setFights)
     }
