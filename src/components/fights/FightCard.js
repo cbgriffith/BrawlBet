@@ -1,9 +1,9 @@
 import React, { useState } from "react"
 // import { useNavigate } from "react-router-dom"
-import { Button, Modal } from "react-bootstrap"
+import { Button } from "react-bootstrap"
 import Container from 'react-bootstrap/Container';
-import Form from 'react-bootstrap/Form';
-import { InputGroup } from "react-bootstrap";
+import { FightModal } from "./FightModal"
+import { Card } from "react-bootstrap";
 import "./Fight.css"
 
 
@@ -16,6 +16,7 @@ export const FightCard = ({fight}) => {
     const [betHouse, setBetHouse] = useState(0);
     const [fighterSelect, setFighterBetOn] = useState(0);
     const [modalShow, setModalShow] = React.useState(false);
+    const [saveFighter, setSaveFighter] = useState({})
 
     const handleBetHouseChange = (event) => {
     //When changing a state object or array,
@@ -35,81 +36,42 @@ export const FightCard = ({fight}) => {
     newFighterBetOn[event.target.id] = event.target.value
     setFighterBetOn(newFighterBetOn)
     }
+    const handleFighterInputChange = (event) => {
+      const newFighterBetOn = { ...saveFighter }
+      newFighterBetOn[event.target.id] = event.target.value
+      setSaveFighter(newFighterBetOn)
+      }
 
     const homeOdds = fight.bookmakers.find(x => x.title === betHouse.chooseBetMaker)?.markets[0].outcomes[1].price
     const awayOdds = fight.bookmakers.find(x => x.title === betHouse.chooseBetMaker)?.markets[0].outcomes[0].price
     // let oddsSelected;
     // console.log(betHouse.chooseBetMaker)
-    console.log(fighterSelect)
-    function BetFormModal(props) {
-        return (
-          <Modal
-            {...props}
-            size="lg"
-            aria-labelledby="contained-modal-title-vcenter"
-            centered
-          >
-            <Modal.Header closeButton>
-              <Modal.Title id="contained-modal-title-vcenter">
-                Place a Bet
-              </Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="form.Name">
-                            <Form.Label>Fighter To Bet On</Form.Label>
-                            <Form.Select aria-label="Default select example" onChange={handleFighterSelectChange} id="fighterBetOn" value={fighterSelect.fighterBetOn}>
-                                
-                                <option value="0">Select A Fighter</option>
-                                <option value={fight.home_team}>{fight.home_team}</option>
-                                <option value={fight.away_team}>{fight.away_team}</option>
-                            </Form.Select>
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Betting House Selected</Form.Label>
-                            <Form.Control readOnly type="text" defaultValue={betHouse.chooseBetMaker} />
-                        </Form.Group>
-                        <Form.Group>
-                            <Form.Label>Odds</Form.Label>
-                            <Form.Control type="text" readOnly defaultValue={(fighterSelect.fighterBetOn === fight.home_team) && (fighterSelect.fighterBetOn !== "0") && (fighterSelect !== 0) ?  homeOdds : awayOdds} />
-                        </Form.Group>
-                        <Form.Group>
-                        <Form.Label>Bet Amount</Form.Label>
-                            <InputGroup className="mb-3">
-                                <InputGroup.Text>$</InputGroup.Text>
-                                <Form.Control required type="number" placeholder="Enter bet amount"/>
-                            </InputGroup>
-                        </Form.Group>
-                    </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={props.onHide}>Place Bet</Button>
-            </Modal.Footer>
-          </Modal>
-        );
-      }
+    // console.log(fighterSelect)
+      
     return (
         <Container>
-        <section className="fight">
-            <h4 className="fight__fighters">{fight.home_team} {homeOdds} vs {fight.away_team} {awayOdds}</h4>
-            <h5 className="fight__date">Fight Date: {fight.commence_time}</h5>
-            {/* <div>Betting House: {fight.bookmakers.map(bookmaker => bookmaker.title).join(" ")}</div> */}
-            <select id="chooseBetMaker" onChange={handleBetHouseChange} className="form-control">
-                    <option value="0">Select a betting house</option>
-                    {fight.bookmakers.map(bookmaker => <option value={bookmaker.title}>{bookmaker.title}</option>)}
-            </select>
-            {/* Only show the Bet button if a betting house is selected */}
-            { betHouse !== 0 && betHouse.chooseBetMaker !== "0" ? 
-            <Button variant="primary" onClick={() => setModalShow(true)}>
-            Bet On This
-          </Button> : ""}
-            <BetFormModal
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
-            <hr/>
-            <br/>
-        </section>
+          <Card id="fight" style={{ width: '30rem' }}>
+              <Card.Body>
+                <Card.Title>{fight.home_team} {homeOdds} vs {fight.away_team} {awayOdds}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">Fight Date: {fight.commence_time}</Card.Subtitle>
+                {/* <div>Betting House: {fight.bookmakers.map(bookmaker => bookmaker.title).join(" ")}</div> */}
+                <select id="chooseBetMaker" onChange={handleBetHouseChange} className="form-control">
+                        <option value="0">Select a betting house</option>
+                        {fight.bookmakers.map(bookmaker => <option value={bookmaker.title}>{bookmaker.title}</option>)}
+                </select>
+                {/* Only show the Bet button if a betting house is selected */}
+                { betHouse !== 0 && betHouse.chooseBetMaker !== "0" ? 
+                <Button variant="primary" onClick={() => setModalShow(true)}>
+                Bet On This
+                </Button> : ""}
+                <FightModal
+                betHouse={betHouse}
+                fight={fight}
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                />
+              </Card.Body>
+          </Card>
         </Container>
         )
 }

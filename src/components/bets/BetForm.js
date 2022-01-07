@@ -76,7 +76,6 @@ export const BetForm = () => {
 
   useEffect(() => {
       getFights()
-      .then(fights.map(fight => fight.id))
       .then(() => {
       if (betId){
         getBetById(betId)
