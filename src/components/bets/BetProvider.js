@@ -7,8 +7,8 @@ export const BetProvider = (props) => {
 
     const getBets = () => {
         return fetch("http://localhost:8088/bets")
-        .then(res => res.json())
-        .then(setBets)
+            .then(res => res.json())
+            .then(setBets)
     }
 
     const addBet = betObj => {
@@ -19,7 +19,7 @@ export const BetProvider = (props) => {
             },
             body: JSON.stringify(betObj)
         })
-        .then(getBets)
+            .then(getBets)
     }
 
     const getBetById = (id) => {
@@ -36,14 +36,14 @@ export const BetProvider = (props) => {
 
     const updateBet = bet => {
         return fetch(`http://localhost:8088/bets/${bet.id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(bet)
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(bet)
         })
-          .then(getBets)
-      }
+            .then(getBets)
+    }
 
     return (
         <BetContext.Provider value={{
