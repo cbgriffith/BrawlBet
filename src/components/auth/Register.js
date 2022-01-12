@@ -55,7 +55,7 @@ export const Register = (props) => {
     }
 
     return (
-        <main style={{ textAlign: "center" }}>
+        <main className="pt-5" style={{ textAlign: "center" }}>
 
             <dialog className="dialog dialog--password" ref={conflictDialog}>
                 <div>Account with that email address already exists</div>
@@ -66,11 +66,11 @@ export const Register = (props) => {
                 <h1 className="h3 mb-3 font-weight-normal">Please Register</h1>
                 <fieldset>
                     <label htmlFor="username"> Username </label>
-                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required />
+                    <input ref={username} type="text" name="username" className="form-control" placeholder="Username" required autoFocus />
                 </fieldset>
                 <fieldset>
                     <label htmlFor="email"> Email address </label>
-                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required autoFocus />
+                    <input ref={email} type="email" name="email" className="form-control" placeholder="Email address" required />
                 </fieldset>
 
                 <fieldset>
@@ -81,8 +81,8 @@ export const Register = (props) => {
                     <button type="submit" variant="outline-secondary" style={{ backgroundColor: "#ecdf90", color: "black" }} className="btn btn-block mt-2"> Register </button>
                 </fieldset>
             </form>
-            <section className="link--register">
-                <Link to="/login">Already a member?</Link>
+            <section  className="link--register">
+                <Link style={{ color: "#ecdf90" }} to="/login">Already a member?</Link>
             </section>
         </main>
     )

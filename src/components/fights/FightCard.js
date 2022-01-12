@@ -50,7 +50,7 @@ export const FightCard = ({ fight }) => {
     
       <div className="fight">
         <Card bg="dark" id="fight" className="mt-5 mb-5" style={{ width: '32rem' }}>
-          <Card.Img variant="top" src={require('../../images/brawlbet.png')} style={{ width: "auto", height: "200px" }} alt="brawl bet" />
+          {/* <Card.Img variant="top" src={require('../../images/brawlbet.png')} style={{ width: "auto", height: "200px" }} alt="brawl bet" /> */}
           <Card.Body>
             <Card.Title>{fight.home_team} {plusMinusHome}{homeOdds} vs {fight.away_team} {plusMinusAway}{awayOdds}</Card.Title>
             <Card.Subtitle className="mb-2 text-muted">Fight Date: {date}</Card.Subtitle>
