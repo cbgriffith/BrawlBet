@@ -1,9 +1,10 @@
-/* .bet{
-    margin-left: 5em;
-} */
+.bet{
+    flex-basis: 45%;
+    margin-left: 3rem;
+}
 
-/* .bets{
+.bets{
     display: flex;
-    flex-direction: row;
-    flex: basis 33%;
-} */
+    width: 100%;
+    flex-wrap: wrap;
+}

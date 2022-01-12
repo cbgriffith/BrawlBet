@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import { Button } from "react-bootstrap"
-import Container from 'react-bootstrap/Container';
 import { FightModal } from "./FightModal"
 import { Card } from "react-bootstrap";
 import "./Fight.css"
@@ -48,8 +47,8 @@ export const FightCard = ({ fight }) => {
   }
 
   return (
-    <Container>
-      <div>
+    
+      <div className="fight">
         <Card bg="dark" id="fight" className="mt-5 mb-5" style={{ width: '32rem' }}>
           <Card.Img variant="top" src={require('../../images/brawlbet.png')} style={{ width: "auto", height: "200px" }} alt="brawl bet" />
           <Card.Body>
@@ -73,6 +72,6 @@ export const FightCard = ({ fight }) => {
           </Card.Body>
         </Card>
       </div>
-    </Container>
+    
   )
 }
