@@ -1,5 +1,4 @@
 import React from "react"
-import Container from 'react-bootstrap/Container';
 import { Button } from "react-bootstrap"
 import { BetModal } from "./BetModal";
 import { Card } from "react-bootstrap";
@@ -94,8 +93,8 @@ export const BetCard = ({ bet }) => {
 
     if (+localStorage.activeUser === bet.userId) {
         return (
-            <Container>
-                <Card border="dark" bg="dark" className="mt-4 mb-4" style={{ width: '30rem' }}>
+            
+                <Card border="dark" bg="dark" className="bet mt-4 mb-4">
                     <Card.Body>
                         <Card.Header><Card.Title>{bet.fighterBetOn} over {bet.fighterBetAgainst}</Card.Title></Card.Header>
                         <Card.Subtitle>{date}</Card.Subtitle>
@@ -117,7 +116,7 @@ export const BetCard = ({ bet }) => {
                         />
                     </Card.Body>
                 </Card>
-            </Container>
+           
         )
     } else {
         return ""

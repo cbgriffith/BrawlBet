@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react"
 import { BetContext } from "./BetProvider"
 import { BetCard } from "./BetCard"
 import Container from 'react-bootstrap/Container';
-// import { Col, Row } from "react-bootstrap";
 import "./Bet.css"
 
 
@@ -30,6 +29,7 @@ export const BetList = () => {
   let absoluteLostBets = 0;
   let upDown
   let howMuchUpDown
+  let payout
 
 
   // function to round numbers to 2nd decimal
@@ -83,6 +83,7 @@ export const BetList = () => {
   totalMoneySpent = round(totalMoneySpent).toLocaleString()
   absoluteLostBets = Math.abs(moneyFromBetsLost).toLocaleString()
   moneyFromBetsWon = round(moneyFromBetsWon).toLocaleString()
+  moneyPending = round(moneyPending).toLocaleString()
   howMuchUpDown = round(Math.abs(howMuchUpDown)).toLocaleString()
   return (
     <>
@@ -93,7 +94,7 @@ export const BetList = () => {
         <div>Total Money From Winning Bets: ${moneyFromBetsWon}</div>
         <div>Total Money From Losing Bets: -${absoluteLostBets}</div>
         <div>Total Money Pending: ${moneyPending}</div>
-        <div>{upDown}: {showNegative}${howMuchUpDown}</div>
+        {/* <div>{upDown}: {showNegative}${howMuchUpDown}</div> */}
 
         <div className="bets">
           {

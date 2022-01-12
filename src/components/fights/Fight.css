@@ -1,0 +1,10 @@
+.fight{
+    flex-basis: 45%;
+    margin-left: 3rem;
+}
+
+.fights{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
