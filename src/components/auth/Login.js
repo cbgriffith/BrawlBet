@@ -35,7 +35,7 @@ export const Login = (props) => {
     }
 
     return (
-        <main className="container--login">
+        <main className="container--login pt-5">
             <dialog className="dialog dialog--auth" ref={existDialog}>
                 <div>User does not exist</div>
                 <button className="button--close" onClick={e => existDialog.current.close()}>Close</button>
@@ -69,7 +69,7 @@ export const Login = (props) => {
                 </form>
             </section>
             <section className="link--register">
-                <Link to="/register">Not a member yet?</Link>
+                <Link style={{ color: "#ecdf90" }} to="/register">Not a member yet?</Link>
             </section>
         </main>
     )
