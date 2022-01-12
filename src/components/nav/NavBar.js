@@ -1,19 +1,25 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import { Container, Navbar, Nav } from "react-bootstrap"
 import "./NavBar.css"
 
 export const NavBar = (props) => {
     return (
-        <ul className="navbar">
-            <li className="navbar__item active">
-                <Link className="navbar__link" to="/">BetTracker</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/bets">Bets</Link>
-            </li>
-            <li className="navbar__item">
-                <Link className="navbar__link" to="/fights">Fights</Link>
-            </li>
-        </ul>
+        <Navbar className="p-3" fixed="top" bg="dark" variant="dark">
+            <Navbar.Brand style={{ color: "#ecdf90" }} className="ms-5" href="/">Brawl Bet</Navbar.Brand>
+            <Container>
+                <Nav className="me-auto">
+                    <Nav.Link href="/bets">My Bets</Nav.Link>
+                    <Nav.Link href="/fights">Fights</Nav.Link>
+                </Nav>
+            </Container>
+            <Nav className="me-5">
+                <Nav.Link href="/logout">Logout</Nav.Link>
+            </Nav>
+
+
+        </Navbar>
     )
 }
+// #ecdf90
+
+// style={{ color: "#ecdf90" }}

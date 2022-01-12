@@ -6,7 +6,6 @@ import "./Login.css"
 
 export const Login = (props) => {
     const email = useRef()
-    // eslint-disable-next-line
     const password = useRef()
     const existDialog = useRef()
     const navigate = useNavigate() //now needs to be navigate and useNavigate()
@@ -26,6 +25,7 @@ export const Login = (props) => {
                     localStorage.setItem("activeUser", exists.id)
                     localStorage.setItem("activeEmail", exists.email)
                     localStorage.setItem("activeUsername", exists.username)
+                    localStorage.setItem("activePassword", exists.password)
                     props.setLoggedin(true)
                     navigate("/") // change to navigate("/")
                 } else {
@@ -43,18 +43,26 @@ export const Login = (props) => {
 
             <section>
                 <form className="form--login" onSubmit={handleLogin}>
-                    <h1>Team Holly Jolly</h1>
+                    <h1>Brawl Bet</h1>
                     <h3>Please sign in</h3>
                     <fieldset>
-                        <label htmlFor="inputEmail"> Email address </label>
+                        <label htmlFor="email"> Email address </label>
                         <input ref={email} type="email"
                             id="email"
                             className="form-control"
-                            placeholder="Email address"
+                            placeholder="Enter email address"
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
+                        <label htmlFor="password"> Password </label>
+                        <input ref={password} type="password"
+                            id="password"
+                            className="form-control"
+                            placeholder="Enter password"
+                            required />
+                    </fieldset>
+                    <fieldset>
+                        <button type="submit" variant="outline-secondary" style={{ backgroundColor: "#ecdf90", color: "black" }} className="btn btn-block mt-2">
                             Sign in
                         </button>
                     </fieldset>

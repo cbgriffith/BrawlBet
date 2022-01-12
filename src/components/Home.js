@@ -1,17 +1,13 @@
 import React from "react";
-import { PropsAndState } from './PropsAndState'
+import { Container } from "react-bootstrap";
 
 export const Home = () => (
     <>
-        <div className="Home">
-        <h2>BetTracker</h2>
-        {/* <small>Loving care when you're not there.</small> */}
-
-        <address>
-            <div>Visit Us at the Nashville North Location</div>
-            <div>500 Puppy Way</div>
-        </address>
-        <PropsAndState yourName={localStorage.activeUsername} />
-        </div>
+        <Container>
+            <div className="Home mt-5">
+                <h2 className="pt-5">Welcome to Brawl Bet!</h2>
+                <small>Place bets on UFC fights, and track your results.</small>
+            </div>
+        </Container>
     </>
 )

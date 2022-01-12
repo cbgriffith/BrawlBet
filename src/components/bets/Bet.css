@@ -1,3 +1,9 @@
 /* .bet{
     margin-left: 5em;
 } */
+
+/* .bets{
+    display: flex;
+    flex-direction: row;
+    flex: basis 33%;
+} */
