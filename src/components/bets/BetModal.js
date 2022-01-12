@@ -6,10 +6,6 @@ import { InputGroup } from "react-bootstrap";
 import { BetContext } from "./BetProvider";
 import { useParams } from 'react-router-dom';
 
-
-
-
-
 export const BetModal = ({ singleBet, ...props }) => {
   const [saveFighter, setSaveFighter] = useState({})
   const { getBetById, updateBet } = useContext(BetContext)
