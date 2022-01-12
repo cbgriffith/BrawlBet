@@ -23,13 +23,13 @@ export const BetList = () => {
   let oddsInDecimal = 0
   let moneyWonLost = 0
   let moneyPending = 0;
-  let showNegative = ""
+  // let showNegative = ""
   let moneyFromBetsWon = 0;
   let moneyFromBetsLost = 0;
   let absoluteLostBets = 0;
-  let upDown
-  let howMuchUpDown
-  let payout
+  // let upDown
+  // let howMuchUpDown
+  // let payout
 
 
   // function to round numbers to 2nd decimal
@@ -63,28 +63,28 @@ export const BetList = () => {
       } else if (bets[x].betResult === "Pending") {
         moneyPending += bets[x].betAmount
       }
-      if (moneyFromBetsWon < Math.abs(moneyFromBetsLost) && moneyPending !== totalMoneySpent) {
-        upDown = "I'm Down"
-        howMuchUpDown = moneyFromBetsWon - Math.abs(moneyFromBetsLost)
-      } else if (moneyFromBetsWon > Math.abs(moneyFromBetsLost)) {
-        upDown = "I'm Up"
-        howMuchUpDown = moneyFromBetsWon - Math.abs(moneyFromBetsLost)
-      } else if (moneyFromBetsWon === totalMoneySpent || moneyPending === totalMoneySpent) {
-        upDown = "I'm Even"
-        howMuchUpDown = ""
-      }
-      if (howMuchUpDown < 0) {
-        showNegative = "-"
-      } else {
-        showNegative = ""
-      }
+      // if (moneyFromBetsWon < Math.abs(moneyFromBetsLost) && moneyPending !== totalMoneySpent) {
+      //   upDown = "I'm Down"
+      //   howMuchUpDown = moneyFromBetsWon - Math.abs(moneyFromBetsLost)
+      // } else if (moneyFromBetsWon > Math.abs(moneyFromBetsLost)) {
+      //   upDown = "I'm Up"
+      //   howMuchUpDown = moneyFromBetsWon - Math.abs(moneyFromBetsLost)
+      // } else if (moneyFromBetsWon === totalMoneySpent || moneyPending === totalMoneySpent) {
+      //   upDown = "I'm Even"
+      //   howMuchUpDown = ""
+      // }
+      // if (howMuchUpDown < 0) {
+      //   showNegative = "-"
+      // } else {
+      //   showNegative = ""
+      // }
     }
   }
   totalMoneySpent = round(totalMoneySpent).toLocaleString()
   absoluteLostBets = Math.abs(moneyFromBetsLost).toLocaleString()
   moneyFromBetsWon = round(moneyFromBetsWon).toLocaleString()
   moneyPending = round(moneyPending).toLocaleString()
-  howMuchUpDown = round(Math.abs(howMuchUpDown)).toLocaleString()
+  // howMuchUpDown = round(Math.abs(howMuchUpDown)).toLocaleString()
   return (
     <>
       <Container className="mt-5 pt-5">

@@ -80,10 +80,13 @@ export const Register = (props) => {
                 <fieldset>
                     <button type="submit" variant="outline-secondary" style={{ backgroundColor: "#ecdf90", color: "black" }} className="btn btn-block mt-2"> Register </button>
                 </fieldset>
+                <section className="mt-5 ml-2 link--register">
+                    <Link style={{ color: "#ecdf90" }} to="/login">Already a member?</Link>
+                </section>
             </form>
-            <section  className="link--register">
+            {/* <section className="mt-5 ml-2 link--register">
                 <Link style={{ color: "#ecdf90" }} to="/login">Already a member?</Link>
-            </section>
+            </section> */}
         </main>
     )
 }

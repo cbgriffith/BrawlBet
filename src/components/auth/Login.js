@@ -66,11 +66,15 @@ export const Login = (props) => {
                             Sign in
                         </button>
                     </fieldset>
+                    <section className="mt-5 ml-2 link--register">
+                        <Link style={{ color: "#ecdf90" }} to="/register">Not a member yet?</Link>
+                    </section>
                 </form>
+
             </section>
-            <section className="link--register">
+            {/* <section className="mt-5 ml-2 link--register">
                 <Link style={{ color: "#ecdf90" }} to="/register">Not a member yet?</Link>
-            </section>
+            </section> */}
         </main>
     )
 }
